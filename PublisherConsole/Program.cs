@@ -10,7 +10,8 @@ GetAuthors();
 AddAuthor();
 GetAuthors();
 
-void AddAuthor()
+
+void AddAuthorWithBook()
 {
     using (PubContext context = new PubContext())
     {
@@ -18,6 +19,52 @@ void AddAuthor()
         {
             FirstName = "Mozart",
             LastName = "La Para"
+        };
+        Book book = new Book
+        {
+            Title = "El Papa del Rap",
+            Author = author
+        };
+        author.Books.Add(book);
+        context.Authors.Add(author);
+        context.SaveChanges();
+    }
+}
+
+void AddAuthorWithBooks()
+{
+    using (PubContext context = new PubContext())
+    {
+        Author author = new Author
+        {
+            FirstName = "Ludwig",
+            LastName = "Van Bethoven"
+        };
+        Book book1 = new Book
+        {
+            Title = "1era sinfonia",
+            Author = author
+        };
+        Book book2 = new Book
+        {
+            Title = "5ta sinfonia",
+            Author = author
+        };
+        author.Books.Add(book1);
+        author.Books.Add(book2);
+        context.Authors.Add(author);
+        context.SaveChanges();
+    }
+}
+
+    void AddAuthor()
+{
+    using (PubContext context = new PubContext())
+    {
+        Author author = new Author
+        {
+            FirstName = "Ludwig",
+            LastName = "Van Bethoven"
         };
         context.Authors.Add(author);
         context.SaveChanges();
